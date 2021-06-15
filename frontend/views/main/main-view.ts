@@ -2,15 +2,17 @@ import '@vaadin/vaadin-app-layout';
 import { AppLayoutElement } from '@vaadin/vaadin-app-layout';
 import '@vaadin/vaadin-app-layout/vaadin-drawer-toggle';
 import '@vaadin/vaadin-avatar/vaadin-avatar';
+import '@vaadin/vaadin-context-menu';
 import '@vaadin/vaadin-tabs';
 import '@vaadin/vaadin-tabs/vaadin-tab';
-import { html } from 'lit';
+import '@vaadin/vaadin-template-renderer';
+import { html, render } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { logout } from '../../auth';
 import { router } from '../../index';
 import { views } from '../../routes';
 import { appStore } from '../../stores/app-store';
 import { Layout } from '../view';
-
 interface RouteInfo {
   path: string;
   title: string;
@@ -24,7 +26,11 @@ export class MainView extends Layout {
         <header slot="navbar" theme="dark" class="sidemenu-header">
           <vaadin-drawer-toggle></vaadin-drawer-toggle>
           <h1>${appStore.currentViewTitle}</h1>
-          <vaadin-avatar></vaadin-avatar>
+          ${appStore.user
+            ? html` <vaadin-context-menu class="user" open-on="click" .renderer=${this.renderLogoutOptions}>
+                <vaadin-avatar img="${appStore.user.profilePictureUrl}" name="${appStore.user.username}"></vaadin-avatar
+              ></vaadin-context-menu>`
+            : html`<a class="user" router-ignore href="login">Sign in</a>`}
         </header>
 
         <div slot="drawer" class="sidemenu-menu">
@@ -59,9 +65,15 @@ export class MainView extends Layout {
     );
   }
 
+  private renderLogoutOptions(root: HTMLElement) {
+    render(
+      html`<vaadin-list-box>
+        <vaadin-item @click=${() => logout()}>Logout</vaadin-item>
+      </vaadin-list-box>`,
+      root
+    );
+  }
   private getMenuRoutes(): RouteInfo[] {
-    return views.filter((route) => route.title) as RouteInfo[];
-
     return views.filter((route) => route.title) as RouteInfo[];
   }
 

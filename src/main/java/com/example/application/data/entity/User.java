@@ -2,6 +2,7 @@ package com.example.application.data.entity;
 
 import java.util.Set;
 
+import javax.annotation.Nonnull;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,17 +15,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class User extends AbstractEntity {
 
+    @Nonnull
     private String username;
 
+    @Nonnull
     private String name;
 
     @ElementCollection(fetch = FetchType.EAGER)
+    @Nonnull
     private Set<Role> roles;
 
     @JsonIgnore
+    @Nonnull
     private String hashedPassword;
 
     @Lob
+    @Nonnull
     private String profilePictureUrl;
 
     public String getUsername() {

@@ -5,6 +5,6 @@ import { View } from '../../views/view';
 @customElement('public-view')
 export class PublicView extends View {
   render() {
-    return html`<div>Content placeholder</div>`;
+    return html`<div>This is the public view</div>`;
   }
 }
