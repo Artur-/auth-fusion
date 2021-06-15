@@ -28,7 +28,7 @@ export class MainView extends Layout {
           <h1>${appStore.currentViewTitle}</h1>
           ${appStore.user
             ? html` <vaadin-context-menu class="user" open-on="click" .renderer=${this.renderLogoutOptions}>
-                <vaadin-avatar img="${appStore.user.profilePictureUrl}" name="${appStore.user.username}"></vaadin-avatar
+                <vaadin-avatar img="${appStore.user.profilePictureUrl}" name="${appStore.user.name}"></vaadin-avatar
               ></vaadin-context-menu>`
             : html`<a class="user" router-ignore href="login">Sign in</a>`}
         </header>
