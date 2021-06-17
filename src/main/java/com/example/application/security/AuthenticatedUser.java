@@ -1,5 +1,6 @@
 package com.example.application.security;
 
+import java.util.Collections;
 import java.util.Optional;
 
 import com.example.application.data.entity.User;
@@ -12,7 +13,9 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class AuthenticatedUser {
@@ -23,9 +26,9 @@ public class AuthenticatedUser {
     private UserDetails getAuthenticatedUser() {
         SecurityContext context = SecurityContextHolder.getContext();
         Object principal = context.getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            UserDetails userDetails = (UserDetails) context.getAuthentication().getPrincipal();
-            return userDetails;
+        if (principal instanceof Jwt) {
+            String userName = ((Jwt) principal).getClaim("sub");
+            return new org.springframework.security.core.userdetails.User(userName, "", Collections.emptyList());
         }
         return null;
     }

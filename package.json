@@ -1,6 +1,4 @@
 {
-  "name": "no-name",
-  "license": "UNLICENSED",
   "dependencies": {
     "@adobe/lit-mobx": "2.0.0-rc.4",
     "@polymer/iron-icon": "3.0.1",
@@ -87,6 +85,8 @@
     "workbox-precaching": "6.1.0",
     "workbox-webpack-plugin": "6.1.0"
   },
+  "license": "UNLICENSED",
+  "name": "no-name",
   "vaadin": {
     "dependencies": {
       "@polymer/iron-icon": "3.0.1",
@@ -165,6 +165,6 @@
       "workbox-precaching": "6.1.0",
       "workbox-webpack-plugin": "6.1.0"
     },
-    "hash": "dd04bd99444682ec49e58192e3c85e826eea6b97f43040cbdaa95c72b148a737"
+    "hash": "3724846c521a86e40d4f8bf448d3a0ae83fe5e7c672ba6b4f3ff0c00b7d7ede0"
   }
 }
