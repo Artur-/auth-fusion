@@ -43,16 +43,11 @@ public class VaadinJwtWebSecurityConfig
 
     @Override
     protected void setLoginView(HttpSecurity http, String fusionLoginViewPath, String logoutUrl) throws Exception {
-        http
-                .formLogin()
-                    .loginPage(fusionLoginViewPath).permitAll()
-                    .successHandler(new VaadinJwtSavedRequestAwareAuthenticationSuccessHandler())
-                    .and()
-                .logout()
-                    .addLogoutHandler(((request, response, authentication) -> {
-                        JwtSplitCookieUtils.removeJwtSplitCookies(request, response);
-                    }))
-                    .logoutSuccessUrl(logoutUrl);
+        super.setLoginView(http, fusionLoginViewPath, logoutUrl);
+        http.formLogin().successHandler(new VaadinJwtSavedRequestAwareAuthenticationSuccessHandler());
+        http.logout().addLogoutHandler((request, response, authentication) -> {
+            JwtSplitCookieUtils.removeJwtSplitCookies(request, response);
+        });
     }
 
     @Bean
