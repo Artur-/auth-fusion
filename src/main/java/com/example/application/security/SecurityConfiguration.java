@@ -16,11 +16,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.example.application.security.jwt.VaadinStatelessWebSecurityConfig;
+import com.example.application.security.jwt.VaadinJwtWebSecurityConfig;
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfiguration extends VaadinStatelessWebSecurityConfig {
+public class SecurityConfiguration extends VaadinJwtWebSecurityConfig {
 
     public static final String LOGOUT_URL = "/";
 

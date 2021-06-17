@@ -26,7 +26,7 @@ import com.example.application.security.jwt.auth.JwtSplitCookieUtils;
 import com.example.application.security.jwt.auth.VaadinStatelessSavedRequestAwareAuthenticationSuccessHandler;
 import com.vaadin.flow.spring.security.VaadinWebSecurityConfigurerAdapter;
 
-public class VaadinStatelessWebSecurityConfig
+public class VaadinJwtWebSecurityConfig
         extends VaadinWebSecurityConfigurerAdapter {
     protected void setJwtSplitCookieAuthentication(HttpSecurity http,
             String issuer, long expires_in, JWSAlgorithm algorithm)
